@@ -19,7 +19,7 @@
         <?php
           $today = date('Ymd');
           $homepageEvents = new WP_Query(array(
-            'posts_per_page' => -1,
+            'posts_per_page' => 2,
             'post_type' => 'event',
             'meta_key' => 'event_date',
             'orderby' => 'meta_value_num',
@@ -41,7 +41,7 @@
                   $eventDate = new DateTime(get_field('event_date'));
                   echo $eventDate->format('M')
                 ?></span>
-                <span class="event-summary__day">25</span>
+                <span class="event-summary__day"><?php echo $eventDate->format('d') ?></span>
               </a>
               <div class="event-summary__content">
                 <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
