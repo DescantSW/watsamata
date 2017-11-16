@@ -10556,16 +10556,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Search = function () {
-  // 1. object creation
+  // 1. describe and create/initiate our object
   function Search() {
     _classCallCheck(this, Search);
 
+    this.resultsDiv = (0, _jquery2.default)("#search-overlay__results");
     this.openButton = (0, _jquery2.default)(".js-search-trigger");
     this.closeButton = (0, _jquery2.default)(".search-overlay__close");
     this.searchOverlay = (0, _jquery2.default)(".search-overlay");
     this.searchField = (0, _jquery2.default)("#search-term");
     this.events();
     this.isOverlayOpen = false;
+    this.isSpinnerVisible = false;
+    this.previousValue;
     this.typingTimer;
   }
 
@@ -10578,7 +10581,7 @@ var Search = function () {
       this.openButton.on("click", this.openOverlay.bind(this));
       this.closeButton.on("click", this.closeOverlay.bind(this));
       (0, _jquery2.default)(document).on("keydown", this.keyPressDispatcher.bind(this));
-      this.searchField.on("keydown", this.typingLogic.bind(this));
+      this.searchField.on("keyup", this.typingLogic.bind(this));
     }
 
     // 3. methods (function, action...)
@@ -10586,16 +10589,38 @@ var Search = function () {
   }, {
     key: "typingLogic",
     value: function typingLogic() {
-      clearTimeout(this.typingTimer);
-      this.typingTimer = setTimeout(function () {
-        console.log("this is a timeout test");
-      }, 2000);
+      if (this.searchField.val() != this.previousValue) {
+        clearTimeout(this.typingTimer);
+
+        if (this.searchField.val()) {
+          if (!this.isSpinnerVisible) {
+            this.resultsDiv.html('<div class="spinner-loader"></div>');
+            this.isSpinnerVisible = true;
+          }
+          this.typingTimer = setTimeout(this.getResults.bind(this), 2000);
+        } else {
+          this.resultsDiv.html('');
+          this.isSpinnerVisible = false;
+        }
+      }
+
+      this.previousValue = this.searchField.val();
+    }
+  }, {
+    key: "getResults",
+    value: function getResults() {
+      var _this = this;
+
+      _jquery2.default.getJSON('http://watsamata-u.dev/wp-json/wp/v2/posts?search=' + this.searchField.val(), function (posts) {
+        _this.resultsDiv.html("\n        <h2 class=\"search-overlay__section-title\">General Information</h2>\n        <ul class=\"link-list min-list\">\n          " + posts.map(function (item) {
+          return "<li><a href=\"" + item.link + "\">" + item.title.rendered + "</a></li>";
+        }).join('') + "\n        </ul>\n      ");
+      });
     }
   }, {
     key: "keyPressDispatcher",
     value: function keyPressDispatcher(e) {
-      if (e.keyCode == 83 && !this.isOverlayOpen) {
-        console.log(e.keyCode);
+      if (e.keyCode == 83 && !this.isOverlayOpen && !(0, _jquery2.default)("input, textarea").is(':focus')) {
         this.openOverlay();
       }
 
@@ -10608,16 +10633,16 @@ var Search = function () {
     value: function openOverlay() {
       this.searchOverlay.addClass("search-overlay--active");
       (0, _jquery2.default)("body").addClass("body-no-scroll");
+      console.log("our open method just ran!");
       this.isOverlayOpen = true;
-      console.log("open method just ran");
     }
   }, {
     key: "closeOverlay",
     value: function closeOverlay() {
       this.searchOverlay.removeClass("search-overlay--active");
       (0, _jquery2.default)("body").removeClass("body-no-scroll");
+      console.log("our close method just ran!");
       this.isOverlayOpen = false;
-      console.log("close method just ran");
     }
   }]);
 
