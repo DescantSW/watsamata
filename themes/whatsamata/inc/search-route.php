@@ -4,11 +4,26 @@ add_action('rest_api_init', 'universityRegisterSearch');
 
 function universityRegisterSearch() {
   register_rest_route('university/v1', 'search', array(
-    'methods' => WP_REST_SERVER::READABLE,
+    'methods' => WP_REST_SERVER::READABLE,      // wp constant that replaces 'GET' making it bulletproof for different server environments.
     'callback' => 'universitySearchResults'
   ));
 }
 
-function universitySearchResults() {
-  return 'Congratulations, you created a route.';
+function universitySearchResults($data) {
+  //return array('red', 'yellow', 'orange');      // WP automagically converts the php arrray to JSON data without our having to tell it to
+  $professors = new WP_Query(array(
+    'post_type' => 'professor',
+    's' => sanitize_text_field($data['term'])
+  ));
+  //return $professors->posts;        // returns the 10 most recent professor posts
+  $professorResults = array();
+
+  while($professors->have_posts()) {
+    $professors->the_post();
+    array_push($professorResults, array(
+      'title' => get_the_title(),
+      'permalink' => get_the_permalink()
+    ));
+  };
+  return $professorResults;
 }
