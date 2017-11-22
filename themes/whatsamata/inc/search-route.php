@@ -13,7 +13,8 @@ function universitySearchResults($data) {
   //return array('red', 'yellow', 'orange');      // WP automagically converts the php arrray to JSON data without our having to tell it to
   $mainQuery = new WP_Query(array(
     'post_type' => array('post', 'page', 'professor', 'program', 'campus', 'event'),
-    's' => sanitize_text_field($data['term'])
+    's' => sanitize_text_field($data['term']),
+    'posts_per_page' => -1
   ));
 
   $results = array(
@@ -30,7 +31,9 @@ function universitySearchResults($data) {
     if (get_post_type() == 'post' OR get_post_type() == 'page') {
       array_push($results['generalInfo'], array(
         'title' => get_the_title(),
-        'permalink' => get_the_permalink()
+        'permalink' => get_the_permalink(),
+        'postType' => get_post_type(),
+        'authorName' => get_the_author()
       ));
     }
 
