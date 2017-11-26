@@ -3,6 +3,8 @@
 function university_post_types() {
   // Campus post type
   register_post_type('campus', array(
+    'capability_type' => 'campus',   // establish event post type as a user permission
+    'map_meta_cap' => true,         // requests wp to enforce capability_type permissions
     'supports' => array('title', 'editor', 'excerpt'),
     'rewrite' => array('slug' => 'campus'),
     'has_archive' => true,
@@ -19,6 +21,8 @@ function university_post_types() {
   
   // Events post type
   register_post_type('event', array(
+    'capability_type' => 'event',   // establish event post type as a user permission
+    'map_meta_cap' => true,         // requests wp to enforce capability_type permissions
     'supports' => array('title', 'editor', 'excerpt'),
     'rewrite' => array('slug' => 'events'),
     'has_archive' => true,
