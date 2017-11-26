@@ -44,7 +44,7 @@ function university_post_types() {
     'has_archive' => true,
     'public' => true,
     'labels' => array(
-      'name' => 'Progrmas',
+      'name' => 'Programs',
       'add_new_item' => 'Add New Program',
       'edit_item' => 'Edit Program',
       'all_items' => 'All Programs',
