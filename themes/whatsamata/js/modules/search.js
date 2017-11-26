@@ -125,6 +125,7 @@ class Search {
     setTimeout(() => this.searchField.focus(), 301);              // js6 way
     console.log("our open method just ran!");
     this.isOverlayOpen = true;
+    return false;   // says to ignor default behavior - i.e we DON'T wabt to use the default navigation.  We want to use THIS custom search
   }
 
   closeOverlay() {

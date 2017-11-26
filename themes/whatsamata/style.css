@@ -2374,8 +2374,6 @@ Descant Icon
 **********************************************************************************/
 
 .descantIcon {
-    background:transparent;
-    color:white;
     Font: 1.3rem Garamond serif;
     display:inline-block;
     line-height: 70%;
@@ -2383,19 +2381,17 @@ Descant Icon
     padding: 3px solid black;
 
 }
+
+.descantIcon a{
+    background: transparent;
+    color: white;
+}
+
 header .descantIcon{        /* header specific settings */
     width: 10rem;
     Font: 2.3rem Garamond serif;
     line-height: 62%;
     padding-top: 4px;
-    /*     background: black;
-         color:white;
-         Font: 1.3rem Garamond serif;
-         display:inline-block;
-         line-height: 70%;
-         width: 6rem;
-         padding: 2.4px;
-    */
 }
 .bigD {
     font-size:1.8em;
