@@ -16,11 +16,11 @@ body.login .button-primary:focus {
 }
 
 body.login {
-  background-color: $beige;
+  background-image: url(images/library-hero.jpg);
 }
-
+ 
 .login h1 a {
-  color: $mainBlue;
+  color: #fff;
   font-size: 30px;
   font-weight: 300;
   background-image: none;

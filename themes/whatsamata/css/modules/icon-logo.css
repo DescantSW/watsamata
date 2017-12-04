@@ -1,0 +1,62 @@
+.iconLogo {
+    background: transparent;
+    color:white;
+    display:inline-block;
+    text-align: left; 
+    margin: 0;
+    Font: 2.3rem Garamond serif;
+    line-height: 62%;
+    padding-top: 4px;
+}
+.iconLogo a {
+    color: #FFF;   
+}
+
+.iconLogoLogin {
+  background: transparent;
+  color: #FFF; 
+}
+
+h1 .iconLogoLogin  a{
+  Font: 2.3rem Garamond serif;
+  line-height: 0.7em;
+  color: #FFF;
+}
+
+.bigLetter {
+    font-size:1.8em;
+    float: left;
+    position: relative;
+    bottom: -0.15em;
+    width: 5%;
+    padding-left: .13em;
+}
+.bigLetter:after {
+    clear: both;
+}
+.icontext {
+    float: right;
+    width: 76%;
+}
+.topLine {
+    letter-spacing: .06em;
+    padding-left: 0.12em;
+}
+.bottomLine {
+    font-size:0.6em;
+    vertical-align:top;
+    padding-left: 0.8em;
+    letter-spacing: .18em;
+    margin: 0;
+}
+
+body.login p#nav a,
+body.login p#backtoblog a {
+  color: #FFF;
+  font-size: 1.5em;
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;  
+}

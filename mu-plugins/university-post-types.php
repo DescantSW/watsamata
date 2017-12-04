@@ -1,12 +1,12 @@
 <?php
 
 function university_post_types() {
-  // Campus post type
+  // Campus Post type
   register_post_type('campus', array(
     'capability_type' => 'campus',   // establish event post type as a user permission
     'map_meta_cap' => true,         // requests wp to enforce capability_type permissions
     'supports' => array('title', 'editor', 'excerpt'),
-    'rewrite' => array('slug' => 'campus'),
+    'rewrite' => array('slug' => 'campuses'),
     'has_archive' => true,
     'public' => true,
     'labels' => array(
@@ -18,8 +18,8 @@ function university_post_types() {
     ),
     'menu_icon' => 'dashicons-location-alt'
   ));
-  
-  // Events post type
+
+  // Event Post type
   register_post_type('event', array(
     'capability_type' => 'event',   // establish event post type as a user permission
     'map_meta_cap' => true,         // requests wp to enforce capability_type permissions
@@ -36,8 +36,8 @@ function university_post_types() {
     ),
     'menu_icon' => 'dashicons-calendar'
   ));
-  
-  // Programs post type
+
+  // Program Post Type
   register_post_type('program', array(
     'supports' => array('title'),
     'rewrite' => array('slug' => 'programs'),
@@ -50,10 +50,11 @@ function university_post_types() {
       'all_items' => 'All Programs',
       'singular_name' => 'Program'
     ),
-    'menu-icon' => 'dashicons-awards'
+    'menu_icon' => 'dashicons-awards'
   ));
-  
-  // Professor post type
+
+
+  // Professor Post Type
   register_post_type('professor', array(
     'show_in_rest' => true,
     'supports' => array('title', 'editor', 'thumbnail'),
@@ -65,8 +66,25 @@ function university_post_types() {
       'all_items' => 'All Professors',
       'singular_name' => 'Professor'
     ),
-    'menu-icon' => 'dashicons-welcom-learn-more'
+    'menu_icon' => 'dashicons-welcome-learn-more'
+  ));
+
+  // Note Post Type
+  register_post_type('note', array(
+    'show_in_rest' => true,
+    'supports' => array('title', 'editor'),
+    'public' => false,
+    'show_ui' => true,
+    'labels' => array(
+      'name' => 'Notes',
+      'add_new_item' => 'Add New Note',
+      'edit_item' => 'Edit Note',
+      'all_items' => 'All Notes',
+      'singular_name' => 'Note'
+    ),
+    'menu_icon' => 'dashicons-welcome-write-blog'
   ));
 
 }
+
 add_action('init', 'university_post_types');
