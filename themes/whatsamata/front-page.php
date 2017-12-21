@@ -78,6 +78,8 @@
     </div>
   </div>
 
+  <!--  This code will be replaced by a dynamic solution  -->
+  <!--
   <div class="hero-slider">
   <div class="hero-slider__slide" style="background-image: url(<?php echo get_theme_file_uri('/images/bus.jpg') ?>);">
     <div class="hero-slider__interior container">
@@ -97,7 +99,6 @@
       </div>
     </div>
   </div>
-  <!--  This code will be replaced by a dynamic solution  -->
   <div class="hero-slider__slide" style="background-image: url(<?php echo get_theme_file_uri('/images/bread.jpg') ?>);">
     <div class="hero-slider__interior container">
       <div class="hero-slider__overlay">
@@ -107,6 +108,7 @@
       </div>
     </div>
   </div>
+  -->
 </div>
  
   <?php get_footer();
