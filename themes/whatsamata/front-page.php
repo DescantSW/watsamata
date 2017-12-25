@@ -78,7 +78,23 @@
     </div>
   </div>
 
-  <!--  This code will be replaced by a dynamic solution  -->
+<!--  Dynamic loading of the banner images  -->
+  <div class="hero-slider">
+    <?php
+        $mySlides = new WP_Query(array(
+          'post_type' => 'slide',
+          'posts_per_page' => -1,
+        ));
+
+        while($mySlides->have_posts()) {
+          $mySlides->the_post();
+          get_template_part('template-parts/content-slide');
+        }
+    ?>
+
+  </div> <!--  end hero-slider  -->
+
+  <!--  This code will be replaced by a dynamic solution  - see directly above -->
   <!--
   <div class="hero-slider">
   <div class="hero-slider__slide" style="background-image: url(<?php echo get_theme_file_uri('/images/bus.jpg') ?>);">
@@ -108,7 +124,7 @@
       </div>
     </div>
   </div>
-  -->
+  End of refactored code -->
 </div>
  
   <?php get_footer();

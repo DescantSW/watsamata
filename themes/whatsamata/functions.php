@@ -160,6 +160,13 @@ function myLoginResources() {
   wp_enqueue_script( 'myLoginJS', get_theme_file_uri('/js/login-edits.js'), array('jquery'), 1.0, true );
 }
 
+// Grant Designer role permission to upload files to the media library
+function add_theme_caps() {
+    $role = get_role( 'designer' );
+    $role->add_cap( 'upload_files' );
+}
+add_action( 'admin_init', 'add_theme_caps');
+
 // Force note posts to be private
 add_filter('wp_insert_post_data', 'makeNotePrivate', 10, 2);
 
